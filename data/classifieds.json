@@ -1,0 +1,110 @@
+[
+    {
+        "id": "1",
+        "title": "20 foot Trailer",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio repellendus cor.",
+        "price":6000,
+        "posted": "2015-10-24",
+        "contact": {
+            "name": "John Doe",
+            "phone": "(555) 3424-282472",
+            "email": "jdoe@mail.com"
+        },
+        "categories": [
+            "Vehicles",
+            "Parts and Accessories"
+        ],
+        "image": "http://www.ronstoyshop.com/category_images/trailer_catalog/enclosed_cargo_trailers/5_wide_trailers/trailers_car_mate_enclosed_cargo_trailer_500_cm508cc.jpg",
+        "views": 34557
+    },
+    {
+        "id": "2",
+        "title": "Fishing Boat",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing eli it amet, consectetur adipisicing elit. Distinctio repellendus cor.",
+        "price":26000,
+        "posted": "2015-10-23",
+        "contact": {
+            "name": "Jane Doedds",
+            "phone": "(555) 3424-28235232",
+            "email": "jdoe@mail.com"
+        },
+        "categories": [
+            "Vehicles",
+            "Parts and Accessories"
+        ],
+        "image": "http://www.yachts123.com/wp-content/uploads/2013/01/fishing-boat.jpg",
+        "views": 247
+    },
+    {
+        "id": "3",
+        "title": "Treecutters Axe",
+        "description": "Just the Axe!",
+        "price":120,
+        "posted": "2015-10-27",
+        "contact": {
+            "name": "John Doe",
+            "phone": "(555) 3424-282472",
+            "email": "jdoe@mail.com"
+        },
+        "categories": [
+            "Woodwork",
+            "Tools"
+        ],
+        "image": "http://www.eamonn.com/wp-content/uploads/2012/05/090512axe.jpg",
+        "views": 349
+    },
+    {
+        "id": "4",
+        "title": "Dove",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio repellendus cor.",
+        "price":25,
+        "posted": "2015-10-25",
+        "contact": {
+            "name": "Kent Fergusson",
+            "phone": "(589) 3424-232572",
+            "email": "fergy@mail.com"
+        },
+        "categories": [
+            "Animals"
+        ],
+        "image": "https://upload.wikimedia.org/wikipedia/commons/8/89/India_Dove.jpg",
+        "views": 3442
+    },
+    {
+        "id": "5",
+        "title": "Notebook, Apple",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio repellendus cor Distinctio repellendus cor Distinctio repellendus cor.",
+        "price":2300,
+        "posted": "2015-10-26",
+        "contact": {
+            "name": "John Mac",
+            "phone": "(534) 3344-22345345",
+            "email": "themac@mail.com"
+        },
+        "categories": [
+            "Computers",
+            "Notebooks",
+            "Apple"
+        ],
+        "image": "http://bilder.t-online.de/b/42/16/90/40/id_42169040/tid_da/apple-notebook-mit-intel-dual-core-cpu-macbook-pro-15-im-test-foto-pcwelt-.jpg",
+        "views": 190000
+    },
+    {
+        "id": "6",
+        "title": "Nailclipper",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio repellendus cor.",
+        "price":7,
+        "posted": "2015-10-29",
+        "contact": {
+            "name": "Jeb Clipper",
+            "phone": "(555) 3424-282345",
+            "email": "clipper@mail.com"
+        },
+        "categories": [
+            "Beauty",
+            "Accessories"
+        ],
+        "image": "http://www.downeastcrossfit.com/wp-content/uploads/2015/09/TNCC_Toe_Nail_Clipper_Curve__98144_zoom.png",
+        "views": 2
+    }
+]
