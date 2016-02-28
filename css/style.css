@@ -1,3 +1,20 @@
 .mdi-plus-circle {
     margin-left: 30px;
 }
+
+.classified.ng-enter, .classified.ng-move {
+    transition: 0.4s all;
+    opacity: 0;
+}
+.classified.ng-enter.ng-enter-active, .classified.ng-move.ng-move-active {
+    opacity: 1;
+}
+
+.classified.ng-leave {
+    animation: 0.4s fade_classified;
+}
+
+@keyframes fade_classified {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
