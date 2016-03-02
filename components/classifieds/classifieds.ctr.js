@@ -6,51 +6,66 @@
         .module("ngClassifieds")
         .controller("classifiedsCtrl", function(
             $scope,
+            $state,
             $http,
             classifiedsFactory,
             $mdSidenav,
             $mdToast,
             $mdDialog) {
             
+            // define capture variable (vm = View Model)
+            var vm = this;
+            
+            vm.categories;
+            vm.classified;
+            vm.classifieds;
+            vm.deleteClassified = deleteClassified;
+            vm.editClassified = editClassified;
+            vm.saveClassified = saveClassified;
+            vm.editing;
+            vm.saveEdit = saveEdit;
+            vm.toggleSidebar = toggleSidebar;
+            
             classifiedsFactory.getClassifieds().then(function(classifieds) {
-                $scope.classifieds = classifieds.data;  
-                $scope.categories = getCategories($scope.classifieds);  
+                vm.classifieds = classifieds.data;  
+                vm.categories = getCategories(vm.classifieds);  
             });
             
             var contact = {
                 name: "Tom Beringer",
                 phone: "923923 27723472",
-                email: "tberng@rjrjr.com"
+                email: "tberng@gmail.com"
             };
             
-            $scope.toggleSidebar = function() {
-                $mdSidenav('left').toggle();                
-            };
+            function toggleSidebar() {
+                // $mdSidenav('left').toggle();    
+                $state.go('classifieds.new');            
+            }
 
-            $scope.saveClassified = function(classified) {
+            function saveClassified(classified) {
                 if (classified) {
                     classified.contact = contact;
-                    $scope.classifieds.push(classified);    
-                    $scope.classified = {};
-                    $scope.toggleSidebar();
+                    vm.classifieds.push(classified);    
+                    vm.classified = {};
+                    toggleSidebar();
                     showToast("Classified Saved");
                 }
-            };
+            }
             
-            $scope.editClassified = function(classified) {
-              $scope.editing = true;
-              $scope.toggleSidebar();
-              $scope.classified = classified; 
-            };
+            function editClassified(classified) {
+              vm.editing = true;
+              toggleSidebar();
+              vm.classified = classified; 
+            }
             
-            $scope.saveEdit = function(classified) {
-                $scope.editing = false;   
-                $scope.classified = {};
-                $scope.toggleSidebar();
+            function saveEdit(classified) {
+                vm.editing = false;
+                vm.classified = {};
+                toggleSidebar();
                 showToast("Edit Saved");
-            };
+            }
             
-            $scope.deleteClassified = function(event, classified) {
+            function deleteClassified(event, classified) {
                 // configure the confirm dialog
                 var confirm = $mdDialog.confirm()
                     .title('Really delete ' + classified.title + ' ?')
@@ -59,12 +74,12 @@
                     .targetEvent(event);
                 // show the confirm dialog
                 $mdDialog.show(confirm).then(function() {
-                    var index = $scope.classifieds.indexOf(classified);
-                    $scope.classifieds.splice(index, 1); 
+                    var index = vm.classifieds.indexOf(classified);
+                    vm.classifieds.splice(index, 1); 
                 }, function() {
-                    
+                    // empty function
                 });   
-            };
+            }
             
             function showToast(message) {
                 $mdToast.show($mdToast.simple()
@@ -83,7 +98,7 @@
                         categories.push(category);  
                     });
                 });
-                // use lodash's uniq (unique) function (return only unique categories from the categories array) 
+                // use lodash's uniq function (return only unique categories from the categories array) 
                 return _.uniq(categories); 
             }
         });
