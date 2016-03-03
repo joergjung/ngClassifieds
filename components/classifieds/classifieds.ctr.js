@@ -13,7 +13,7 @@
             $mdToast,
             $mdDialog) {
             
-            // define capture variable (vm = View Model)
+            // define capture variables (vm = View Model)
             var vm = this;
             
             vm.categories;
@@ -31,6 +31,17 @@
                 vm.categories = getCategories(vm.classifieds);  
             });
             
+            // listen to emitted data from the classifieds.new Controller (the child controller)
+            $scope.$on('newClassified', function(event, classified) {
+                classified.id = vm.classifieds.length + 1; 
+                vm.classifieds.push(classified);
+                showToast('Classified save!');
+            });
+            
+            $scope.$on('editSaved', function(event, message) {
+                showToast(message);
+            });
+            
             var contact = {
                 name: "Tom Beringer",
                 phone: "923923 27723472",
@@ -38,7 +49,6 @@
             };
             
             function toggleSidebar() {
-                // $mdSidenav('left').toggle();    
                 $state.go('classifieds.new');            
             }
 
@@ -51,11 +61,12 @@
                     showToast("Classified Saved");
                 }
             }
-            
+            // change state + add URL parameters classified id and classified object
             function editClassified(classified) {
-              vm.editing = true;
-              toggleSidebar();
-              vm.classified = classified; 
+                $state.go('classifieds.edit', {
+                    id: classified.id,
+                    classified: classified
+                });
             }
             
             function saveEdit(classified) {
