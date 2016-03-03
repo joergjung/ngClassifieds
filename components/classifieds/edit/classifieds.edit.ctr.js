@@ -14,11 +14,13 @@
             
             // define capture variables (vm = View Model)
             var vm = this;
+            // reference to Firebase
+            vm.classifieds = classifiedsFactory.ref;
+            // get the record of the Firebase data object
+            vm.classified = vm.classifieds.$getRecord($state.params.id);
             vm.toggleSidebar = toggleSidebar;
             vm.saveEdit = saveEdit;
-            // grabs the classified object from the state params (classifieds.ctr) and puts it on vm.classified
-            vm.classified = $state.params.classified;
-       
+            
             $timeout(function() {
                 $mdSidenav('left').toggle();
             });    
@@ -38,8 +40,12 @@
             }
             
             function saveEdit(classified) {
-                $scope.$emit('editSaved', 'Edit saved!');
-                vm.sidenavOpen = false;             
+                // save to Firebase (creates a promise, the callback function emits data and closes the sidebar)
+                vm.classifieds.$save(vm.classified).then(function() {
+                    $scope.$emit('editSaved', 'Edit saved!');
+                    vm.sidenavOpen = false;     
+                });            
             }
         });
  })(); 
+ 
