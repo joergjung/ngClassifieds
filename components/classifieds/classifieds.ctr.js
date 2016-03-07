@@ -19,8 +19,6 @@
             vm.categories;
             vm.classified;
             vm.classifieds;
-            vm.deleteClassified = deleteClassified;
-            vm.editClassified = editClassified;
             vm.saveClassified = saveClassified;
             vm.editing;
             vm.saveEdit = saveEdit;
@@ -64,35 +62,12 @@
                     showToast("Classified Saved");
                 }
             }
-            // change state + add URL parameters classified id and classified object
-            function editClassified(classified) {
-                $state.go('classifieds.edit', {
-                    // State Parameter "$id" is hashed id from Firebase Array
-                    id: classified.$id
-                });
-            }
             
             function saveEdit(classified) {
                 vm.editing = false;
                 vm.classified = {};
                 toggleSidebar();
                 showToast("Edit Saved");
-            }
-            
-            function deleteClassified(event, classified) {
-                // configure the confirm dialog
-                var confirm = $mdDialog.confirm()
-                    .title('Really delete ' + classified.title + ' ?')
-                    .ok('Yes')
-                    .cancel('No')
-                    .targetEvent(event);
-                // show the confirm dialog
-                $mdDialog.show(confirm).then(function() {
-                    vm.classifieds.$remove(classified);
-                    showToast('Classified deleted!');
-                }, function() {
-                    // empty function
-                });   
             }
             
             function showToast(message) {

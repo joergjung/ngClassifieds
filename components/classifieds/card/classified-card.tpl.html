@@ -1,0 +1,52 @@
+<md-card ng-repeat="classified in classifieds |
+                                filter: classifiedsFilter |
+                                filter: category"
+                                class="classifieds"
+                                flex="30">
+    <img ng-src="{{ classified.image }}" alt="">
+    <md-card-content>
+        <div class="classified-info" ng-show="!showContact">
+            <h2 class="md-title">{{ classified.title }}</h2>
+            <h3>{{ classified.price | currency: '€' }}</h3>
+            <p>{{ classified.description }}</p>
+            <h5>{{ classified.posted | date:'longDate' }}</h5>
+        </div>
+        
+        <div class="classified-contact" ng-show="showContact">
+            <p><md-icon class="mdi mdi-account"> {{ classified.contact.name }}</md-icon></p>
+            <p><md-icon class="mdi mdi-phone"> {{ classified.contact.phone }}</md-icon></p>
+            <p><md-icon class="mdi mdi-email"> {{ classified.contact.email }}</md-icon></p>
+        </div>
+        
+        <div layout="column">
+            <md-button 
+                ng-click="showContact = true"
+                ng-show="!showContact">
+                Contact
+            </md-button>
+            <md-button
+                ng-click="showContact = false"
+                ng-show="showContact">
+                Details
+            </md-button>
+            <md-button
+                ng-click="showAdmin = true"
+                ng-show="!showAdmin">
+                Admin
+            </md-button>
+            <md-button
+                ng-click="showAdmin = false"
+                ng-show="showAdmin">
+                Close Admin
+            </md-button>
+        </div>
+        
+        <div class="classifiedAdmin" ng-if="showAdmin">
+            <h3>Admin</h3>
+            <div layout="row">
+                <md-button class="primary" ng-click="vm.editClassified(classified)">Edit</md-button>
+                <md-button class="md-warn" ng-click="vm.deleteClassified($event, classified)">Delete</md-button>
+            </div>
+        </div>
+    </md-card-content>
+</md-card>

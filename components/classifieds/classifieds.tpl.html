@@ -17,11 +17,11 @@
 <div class="filters" layout="row" layout-align="center center" ng-show="showFilters">
     <md-input-container>
         <label>Enter Search Term</label>
-        <input type="text" ng-model="classifiedsSearchFilter">
+        <input type="text" ng-model="classifiedsFilter">
     </md-input-container>
     
     <div layout="row">
-        <md-select ng-model="categoryFilter" placeholder="Select a category">
+        <md-select ng-model="category" placeholder="Select a category">
             <md-option ng-repeat="category in vm.categories" value="{{ category }}">
                 {{ category }}
             </md-option>
@@ -31,63 +31,20 @@
     <div layout="row">
         <md-button
             class="md-warn"
-            ng-click="classifiedsSearchFilter =''; categoryFilter =''">
+            ng-click="classifiedsFilter ='';
+            category=''">
             Clear
         </md-button>
     </div>
 </div>
 
-<md-content class="md-padding" layout="row" layout-wrap>
-    <md-card ng-repeat="classified in vm.classifieds |
-                                    filter: classifiedsSearchFilter |
-                                    filter: categoryFilter"
-                                    class="classifieds"
-                                    flex="30">
-        <img ng-src="{{ classified.image }}" alt="">
-        <md-card-content>
-            <div class="classified-info" ng-show="!showContact">
-                <h2 class="md-title">{{ classified.title }}</h2>
-                <h3>{{ classified.price | currency: '€' }}</h3>
-                <p>{{ classified.description }}</p>
-                <h5>{{ classified.posted | date:'longDate' }}</h5>
-            </div>
-            
-            <div class="classified-contact" ng-show="showContact">
-                <p><md-icon class="mdi mdi-account"> {{ classified.contact.name }}</md-icon></p>
-                <p><md-icon class="mdi mdi-phone"> {{ classified.contact.phone }}</md-icon></p>
-                <p><md-icon class="mdi mdi-email"> {{ classified.contact.email }}</md-icon></p>
-            </div>
-            
-            <div layout="column">
-                <md-button 
-                    ng-click="showContact = true"
-                    ng-show="!showContact">
-                    Contact
-                </md-button>
-                <md-button
-                    ng-click="showContact = false"
-                    ng-show="showContact">
-                    Details
-                </md-button>
-                <md-button
-                    ng-click="showAdmin = true"
-                    ng-show="!showAdmin">
-                    Admin
-                </md-button>
-                <md-button
-                    ng-click="showAdmin = false"
-                    ng-show="showAdmin">
-                    Close Admin
-                </md-button>
-            </div>
-            
-            <div class="classifiedAdmin" ng-if="showAdmin">
-                <h3>Admin</h3>
-                <div layout="row">
-                    <md-button class="primary" ng-click="vm.editClassified(classified)">Edit</md-button>
-                    <md-button class="md-warn" ng-click="vm.deleteClassified($event, classified)">Delete</md-button>
-                </div>
-            </div>
-        </md-card-content>
-    </md-card>
+<md-content>
+    <classified-card 
+        classifieds="vm.classifieds"
+        classifieds-filter="classifiedsFilter"
+        category="category" 
+        class="md-padding"
+        layout="row"
+        layout-wrap>
+    </classified-card>
 </md-content>
